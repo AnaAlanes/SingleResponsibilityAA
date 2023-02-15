@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CalculadoraDemo
 {
@@ -41,34 +37,31 @@ namespace CalculadoraDemo
             Console.WriteLine("----------Sum--------------");
             Console.WriteLine(resultAfterUndo);
             Console.WriteLine("------------------------");
-            Console.WriteLine("");
 
             Console.WriteLine("-----------Substract-------------");
             var firstSubstract = new Substract(10, 2);
             var secondSubstract = new Substract(firstSubstract.Perform(), 2);
             Console.WriteLine(secondSubstract.Perform());
-            Console.WriteLine("");
 
             Console.WriteLine("-----------Multiply-------------");
             var firstMultiplication = new Multiply(6, 2);
             var secondMultiplication = new Multiply(firstMultiplication.Perform(), 2);
             Console.WriteLine(secondMultiplication.Perform());
-            Console.WriteLine("");
-            Console.WriteLine("-----------Divide-------------");
 
+            Console.WriteLine("-----------Divide-------------");
             var firstDivide = new Multiply(6, 2);
             var secondDivide = new Multiply(firstDivide.Perform(), 2);
             Console.WriteLine(secondDivide.Perform());
             Console.WriteLine("");
 
 
-            //var respSum = calculatorProgram.Sum(1, 2);
-            //respSum = calculatorProgram.Sum(respSum, 8);
-            //respSum = calculatorProgram.Sum(respSum, 9);
+            var respSum = calculatorProgram.Sum(1, 2);
+            respSum = calculatorProgram.Sum(respSum, 8);
+            respSum = calculatorProgram.Sum(respSum, 9);
 
-            //var respSubstract = calculatorProgram.Substract(4, 2);
-            //var respMultiply = calculatorProgram.Multiply(3, 7);
-            //var respDivide = calculatorProgram.Divide(3, 2);
+            var respSubstract = calculatorProgram.Substract(4, 2);
+            var respMultiply = calculatorProgram.Multiply(3, 7);
+            var respDivide = calculatorProgram.Divide(3, 2);
         }
     }
 }

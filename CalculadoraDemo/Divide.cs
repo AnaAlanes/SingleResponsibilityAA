@@ -17,6 +17,7 @@
             resultDivision = (firstNumber / secondNumber);
             return resultDivision;
         }
+
         public int Undo()
         {
             return resultDivision * secondNumber;
