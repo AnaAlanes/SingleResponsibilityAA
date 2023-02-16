@@ -67,10 +67,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Substract.cs" />
     <Compile Include="Sum.cs" />
-    <Compile Include="tests\OperationTestDivide.cs" />
-    <Compile Include="tests\OperationTestMultiply.cs" />
-    <Compile Include="tests\OperationTestsSum.cs" />
-    <Compile Include="tests\OperationTestSubtract.cs" />
+    <Compile Include="Tests\TestDivideOperation .cs" />
+    <Compile Include="Tests\TestMultiplicationOperation .cs" />
+    <Compile Include="Tests\TestSumOperation .cs" />
+    <Compile Include="Tests\TestSubstractOperation .cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

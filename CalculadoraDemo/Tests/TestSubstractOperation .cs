@@ -2,37 +2,37 @@
 
 namespace CalculadoraDemo.tests
 {
-    public class OperationTestSubtract
+    public class TestSubstractOperation
     {
 
         [TestMethod]
-        public void VerifySubstractOfPositiveNumbers()
+        public void VerifySubtractionOfPositiveNumbers()
         {
-            var expectedSubstract = 2;
+            var expectedResult = 2;
             var firstNumber = 4;
             var secondNumber = 2;
 
             var resultOfSubstract = new Substract(firstNumber, secondNumber).Perform();
 
-            Assert.AreEqual(expectedSubstract, resultOfSubstract, $"The Expected result of Substract should be {expectedSubstract} But it was: {resultOfSubstract}");
+            Assert.AreEqual(expectedResult, resultOfSubstract, $"The Expected result of Substract should be {expectedResult} But it was: {resultOfSubstract}");
         }
 
         [TestMethod]
-        public void VerifySubstractOfNegativeNumbers()
+        public void VerifySubtractionOfNegativeNumbers()
         {
-            var expectedSubstract = -2;
-            var firstNumber = -4; // - 4
-            var secondNumber = -2; // + 2
+            var expectedResult = -2;
+            var firstNumber = -4; 
+            var secondNumber = -2; 
 
             var resultOfSubstract = new Substract(firstNumber, secondNumber).Perform();
 
-            Assert.AreEqual(expectedSubstract, resultOfSubstract, $"The Expected result of Substract should be {expectedSubstract} But it was: {resultOfSubstract}");
+            Assert.AreEqual(expectedResult, resultOfSubstract, $"The Expected result of Substract should be {expectedResult} But it was: {resultOfSubstract}");
         }
 
         [TestMethod]
-        public void VerifyUndoOfSubstractOfPositiveNumbers()
+        public void VerifyUndoOfSubtractionOfPositiveNumbers()
         {
-            var expectedSubstract = 6;
+            var expectedResult = 6;
             var expectedUndo = 8;
             var firstNumber = 8;
             var secondNumber = 2;
@@ -41,7 +41,7 @@ namespace CalculadoraDemo.tests
             var resultOfSubstract = substractToTest.Perform();
             var resultOfUndo = substractToTest.Undo();
 
-            Assert.AreEqual(expectedSubstract, resultOfSubstract, $"The Expected result of Substract should be {expectedSubstract} But it was: {resultOfSubstract}");
+            Assert.AreEqual(expectedResult, resultOfSubstract, $"The Expected result of Substract should be {expectedResult} But it was: {resultOfSubstract}");
             Assert.AreEqual(expectedUndo, resultOfUndo, $"The Expected result of Undo in Substract should be {expectedUndo} But it was: {resultOfUndo}");
         }
     }
