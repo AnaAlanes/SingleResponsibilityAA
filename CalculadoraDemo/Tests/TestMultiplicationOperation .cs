@@ -1,32 +1,26 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CalculadoraDemo.Utils;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace CalculadoraDemo.tests
 {
     public class TestMultiplicationOperation
     {
 
-        [TestMethod]
-        public void VerifyMultiplicationOfPositiveNumbers()
+        public static IEnumerable<object[]> AdditionData
         {
-            var expectedResult = 6;
-            var firstNumber = 12;
-            var secondNumber = 3;
-
-            var resultOfMultication = new Substract(firstNumber, secondNumber).Perform();
-
-            Assert.AreEqual(expectedResult, resultOfMultication, $"The Expected result of Substract should be {expectedResult} But it was: {resultOfMultication}");
+            get
+            {
+                return OperationHelper.GetAdditionData();
+            }
         }
 
         [TestMethod]
-        public void VerifyMultiplicationOfNegativeNumbers()
+        [DynamicData(nameof(AdditionData))]
+        public void VerifyMultiplicationOfTwoIntegerNumbers(int id, string firstNumber, string secondNumber, string expectedMultiplication)
         {
-            var expectedResult = -5;
-            var firstNumber = -8;
-            var secondNumber = -3;
-
-            var resultOfMultication = new Substract(firstNumber, secondNumber).Perform();
-
-            Assert.AreEqual(expectedResult, resultOfMultication, $"The Expected result of Substract should be {expectedResult} But it was: {resultOfMultication}");
+            var resultOfMultiplication = new Multiply(int.Parse(firstNumber), int.Parse(secondNumber)).Perform();
+            Assert.AreEqual(int.Parse(expectedMultiplication), resultOfMultiplication, $"The Expected result of Multiplication should be {expectedMultiplication} But it was: {resultOfMultiplication}");
         }
 
         [TestMethod]
@@ -41,8 +35,8 @@ namespace CalculadoraDemo.tests
             var resultOfmultication = multicationToTest.Perform();
             var resultOfUndo = multicationToTest.Undo();
 
-            Assert.AreEqual(expectedResult, resultOfmultication, $"The Expected result of Substract should be {expectedResult} But it was: {resultOfmultication}");
-            Assert.AreEqual(expectedUndo, resultOfUndo, $"The Expected result of Undo in Substract should be {expectedUndo} But it was: {resultOfUndo}");
+            Assert.AreEqual(expectedResult, resultOfmultication, $"The Expected result of Multiplication should be {expectedResult} But it was: {resultOfmultication}");
+            Assert.AreEqual(expectedUndo, resultOfUndo, $"The Expected result of Undo in Multiplication should be {expectedUndo} But it was: {resultOfUndo}");
         }
     }
 }

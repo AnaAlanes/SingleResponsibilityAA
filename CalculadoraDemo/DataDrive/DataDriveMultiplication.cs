@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CalculadoraDemo.Utils;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace CalculadoraDemo.DataDrive
@@ -10,19 +11,7 @@ namespace CalculadoraDemo.DataDrive
         {
             get
             {
-                return new[]
-                {
-                    new object[] {10, 4, 40},
-                    new object[] {-6, -4, 24},
-                    new object[] {-3, 8, -24},
-                    new object[] {8, -2, -16},
-                    new object[] {0, 8, 0},
-                    new object[] {6, 0, 0},
-                    new object[] {-7, 0, 0},
-                    new object[] {0, -9, 0},
-                    new object[] {0, 0, 0},
-
-                };
+                return OperationMultiplication.GetMultiplicationData();
             }
         }
 

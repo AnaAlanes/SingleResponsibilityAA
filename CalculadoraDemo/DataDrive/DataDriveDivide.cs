@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CalculadoraDemo.Utils;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace CalculadoraDemo.DataDrive
@@ -10,14 +11,7 @@ namespace CalculadoraDemo.DataDrive
         {
             get
             {
-                return new[]
-                {
-                    new object[] {10, 2, 5},
-                    new object[] {-6, -4, 1},
-                    new object[] {-8, 3, -2},
-                    new object[] {6, -4, -1},
-
-                };
+                return OperationDivision.GetDivisionData();
             }
         }
 
@@ -26,7 +20,7 @@ namespace CalculadoraDemo.DataDrive
         public void VerifyDivisionOfTwoIntegerNumber(int firstNumber, int secondNumber, int expectedDivision)
         {
 
-            var resultOfDivision = new Divide(firstNumber, secondNumber).Perform();
+            var resultOfDivision = new Division(firstNumber, secondNumber).Perform();
             Assert.AreEqual(expectedDivision, resultOfDivision, $"The Expected result of Multication Test should be {expectedDivision} But it was: {resultOfDivision}");
         }
     }

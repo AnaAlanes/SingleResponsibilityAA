@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CalculadoraDemo.Utils;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace CalculadoraDemo.tests
@@ -6,30 +7,22 @@ namespace CalculadoraDemo.tests
     [TestClass]
     public class TestSumOperation
     {
-   
-        [TestMethod]
-        public void VerifySumOfPositiveNumbers()
+        public static IEnumerable<object[]> AdditionData
         {
-            var expectedResult = 3; 
-            var firstNumber = 1;    
-            var secondNumber = 2;   
-
-            var resultOfSum = new Sum(firstNumber, secondNumber).Perform();
-
-            Assert.AreEqual(expectedResult, resultOfSum, $"The Expected result of Sum should be {expectedResult} But it was: {resultOfSum}");  
+            get
+            {
+                return OperationHelper.GetAdditionData();
+            }
         }
 
         [TestMethod]
-        public void VerifySumOfNegativeNumbers()
+        [DynamicData(nameof(AdditionData))]
+        public void VerifySumOfTwoIntegerNumbers(int id, string firstNumber, string secondNumber, string expectedSum)
         {
-            var expectedResult = -3;
-            var firstNumber = -1;
-            var secondNumber = -2;
-
-            var resultOfSum = new Sum(firstNumber, secondNumber).Perform();
-
-            Assert.AreEqual(expectedResult, resultOfSum, $"The Expected result of Sum should be {expectedResult} But it was: {resultOfSum}");
+            var resultOfSum = new Sum(int.Parse(firstNumber), int.Parse(secondNumber)).Perform();
+            Assert.AreEqual(int.Parse(expectedSum), resultOfSum, $"The Expected result of Sum should be {expectedSum} But it was: {resultOfSum}");
         }
+
 
         [TestMethod]
         public void VerifyUndoOfSumOfPositiveNumbers()

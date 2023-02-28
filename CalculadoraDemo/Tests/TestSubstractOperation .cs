@@ -1,32 +1,26 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CalculadoraDemo.Utils;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace CalculadoraDemo.tests
 {
     public class TestSubstractOperation
     {
 
-        [TestMethod]
-        public void VerifySubtractionOfPositiveNumbers()
+        public static IEnumerable<object[]> AdditionData
         {
-            var expectedResult = 2;
-            var firstNumber = 4;
-            var secondNumber = 2;
-
-            var resultOfSubstract = new Substract(firstNumber, secondNumber).Perform();
-
-            Assert.AreEqual(expectedResult, resultOfSubstract, $"The Expected result of Substract should be {expectedResult} But it was: {resultOfSubstract}");
+            get
+            {
+                return OperationHelper.GetAdditionData();
+            }
         }
 
         [TestMethod]
-        public void VerifySubtractionOfNegativeNumbers()
+        [DynamicData(nameof(AdditionData))]
+        public void VerifySubstractOfTwoIntegerNumbers(int id, string firstNumber, string secondNumber, string expectedSubstract)
         {
-            var expectedResult = -2;
-            var firstNumber = -4; 
-            var secondNumber = -2; 
-
-            var resultOfSubstract = new Substract(firstNumber, secondNumber).Perform();
-
-            Assert.AreEqual(expectedResult, resultOfSubstract, $"The Expected result of Substract should be {expectedResult} But it was: {resultOfSubstract}");
+            var resultOfSubstract = new Substract(int.Parse(firstNumber), int.Parse(secondNumber)).Perform();
+            Assert.AreEqual(int.Parse(expectedSubstract), resultOfSubstract, $"The Expected result of Substract should be {expectedSubstract} But it was: {resultOfSubstract}");
         }
 
         [TestMethod]
