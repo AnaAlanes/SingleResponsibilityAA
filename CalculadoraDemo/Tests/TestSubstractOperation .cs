@@ -2,41 +2,39 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace CalculadoraDemo.tests
+namespace CalculadoraDemo.Tests
 {
+    [TestClass]
     public class TestSubstractOperation
     {
 
-        public static IEnumerable<object[]> AdditionData
+        public static IEnumerable<object[]> SubstractData
         {
             get
             {
-                return OperationHelper.GetAdditionData();
+                return OperationSubstract.GetSubstractData();
             }
         }
 
         [TestMethod]
-        [DynamicData(nameof(AdditionData))]
-        public void VerifySubstractOfTwoIntegerNumbers(int id, string firstNumber, string secondNumber, string expectedSubstract)
+        [DynamicData(nameof(SubstractData))]
+        public void VerifySubstractOfTwoIntegerNumbers(int id, string firstNumber, string secondNumber, string expectedSubstract, string expectedUndo)
         {
             var resultOfSubstract = new Substract(int.Parse(firstNumber), int.Parse(secondNumber)).Perform();
+
             Assert.AreEqual(int.Parse(expectedSubstract), resultOfSubstract, $"The Expected result of Substract should be {expectedSubstract} But it was: {resultOfSubstract}");
         }
 
         [TestMethod]
-        public void VerifyUndoOfSubtractionOfPositiveNumbers()
+        [DynamicData(nameof(SubstractData))]
+        public void VerifyUndoOfASubstractOfPositiveNumbers(int id, string firstNumber, string secondNumber, string expectedSubstract, string expectedUndo)
         {
-            var expectedResult = 6;
-            var expectedUndo = 8;
-            var firstNumber = 8;
-            var secondNumber = 2;
+            var Substract = new Substract(int.Parse(firstNumber), int.Parse(secondNumber));
+            var resultOfSubstract = Substract.Perform();
+            var resultOfUndo = Substract.Undo();
 
-            var substractToTest = new Substract(firstNumber, secondNumber);
-            var resultOfSubstract = substractToTest.Perform();
-            var resultOfUndo = substractToTest.Undo();
-
-            Assert.AreEqual(expectedResult, resultOfSubstract, $"The Expected result of Substract should be {expectedResult} But it was: {resultOfSubstract}");
-            Assert.AreEqual(expectedUndo, resultOfUndo, $"The Expected result of Undo in Substract should be {expectedUndo} But it was: {resultOfUndo}");
+            Assert.AreEqual(int.Parse(expectedSubstract), resultOfSubstract, $"The Expected result of Substract should be {expectedSubstract} But it was: {resultOfSubstract}");
+            Assert.AreEqual(int.Parse(expectedUndo), resultOfUndo, $"The Expected result of Undo in Substract should be {expectedUndo} But it was: {resultOfUndo}");
         }
     }
 }

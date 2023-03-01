@@ -2,40 +2,38 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace CalculadoraDemo.tests
+namespace CalculadoraDemo.Tests
 {
+    [TestClass]
     public class TestDivisionOperation
     {
-        public static IEnumerable<object[]> AdditionData
+        public static IEnumerable<object[]> DivisionData
         {
             get
             {
-                return OperationHelper.GetAdditionData();
+                return OperationDivision.GetDivisionData();
             }
         }
 
         [TestMethod]
-        [DynamicData(nameof(AdditionData))]
-        public void VerifyDivisionOfTwoIntegerNumbers(int id, string firstNumber, string secondNumber, string expectedDivision)
+        [DynamicData(nameof(DivisionData))]
+        public void VerifyDivisionOfTwoIntegerNumbers(int ID, string firstNumber, string secondNumber, string expectedDivision, string expectedUndo)
         {
             var resultOfDivision = new Division(int.Parse(firstNumber), int.Parse(secondNumber)).Perform();
             Assert.AreEqual(int.Parse(expectedDivision), resultOfDivision, $"The Expected result of Division should be {expectedDivision} But it was: {resultOfDivision}");
         }
 
         [TestMethod]
-        public void VerifyUndoOfDivisionOfPositiveNumbers()
+        [DynamicData(nameof(DivisionData))]
+        public void VerifyUndoOfADivisionOfPositiveNumbers(int ID, string firstNumber, string secondNumber, string expectedDivision, string expectedUndo)
         {
-            var expectedResult = 6;
-            var expectedUndo = 1;
-            var firstNumber = 8;
-            var secondNumber = 2;
+            var Division = new Division(int.Parse(firstNumber), int.Parse(secondNumber));
 
-            var divisionToTest = new Substract(firstNumber, secondNumber);
-            var resultOfDivision = divisionToTest.Perform();
-            var resultOfUndo = divisionToTest.Undo();
+            var resultOfDivision = Division.Perform();
+            var resultOfUndo = Division.Undo();
 
-            Assert.AreEqual(expectedResult, resultOfDivision, $"The Expected result of Division should be {expectedResult} But it was: {resultOfDivision}");
-            Assert.AreEqual(expectedUndo, resultOfUndo, $"The Expected result of Undo in Division should be {expectedUndo} But it was: {resultOfUndo}");
+            Assert.AreEqual(int.Parse(expectedDivision), resultOfDivision, $"The Expected result of Division should be {expectedDivision} But it was: {resultOfDivision}");
+            Assert.AreEqual(int.Parse(expectedUndo), resultOfUndo, $"The Expected result of Undo in Division should be {expectedUndo} But it was: {resultOfUndo}");
         }
     }
 }
